@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+.max-width{
+    max-width: 1300px;
+    padding: 0 80px;
+    margin: auto;
+}
+
+.navbar
+{
+    position: fixed;
+    width: 100%;
+    padding: 30px 0;
+    // background: crimson;
+    font-family: 'Ubuntu',sans-serif;
+
+}
+
+.navbar .sticky
+{
+    padding: 30px 0;
+    background: crimson;
+}
+.navbar .max-width{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.navbar .logo a
+{
+    color: #fff;
+    font-size: 35px;
+    font-weight: 600;
+
+}
+.navbar .logo a span
+{
+    color: crimson;
+}
+
+
+.navbar .menu li{
+    list-style: none;   
+    font-size: 18px;
+    font-weight: 500;
+    margin-left: 25px;
+    display: inline-block;
+}
+.navbar .menu li a{
+    color: #f2f2f2;
+    font-size: 18px;
+    font-weight: 500;
+    margin-left: 25px;
+    transition: color 0.3s ease;
+}
+
+.navbar .menu li a:hover
+{
+    color: crimson;
+}
+
+.home
+{
+    display: flex;
+    background: url("../img/anime.jpeg") no-repeat center;
+    height: 100vh;
+    color:#fff;
+    min-height: 500px;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: 'Ubuntu',sans-serif;
+
+}
+
+.home .max-width
+{
+    margin: auto 0 auto 40px;
+
+}   
+
+.home .home-content .text-1
+{
+    font-size: 27px;
+}
+.home .home-content .text-2
+{
+    font-size: 75px;
+    font-weight: 600;
+    margin-left: -3px;
+}
+.home .home-content .text-3
+{
+    font-size: 40px;
+    margin: 5px 0;
+    span
+    {
+        color: crimson;
+        font-weight: 700;
+    }
+}
+
