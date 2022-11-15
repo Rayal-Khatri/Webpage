@@ -1,12 +1,10 @@
+console.log("This is my messsage")
 $(document).ready(function(){
     $(window).scroll(function(){
-        if(this.scrollY > 20)
-        {
+        if(this.scrollY > 2){
             $('.navbar').addClass("sticky");
-        }
-        else
-        {
-
+        }else{
+            $('.navbar').removeClass("sticky");
         }
     })
-})
+});
