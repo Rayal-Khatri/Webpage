@@ -79,4 +79,20 @@
 .home .home-content .text-3 span {
   color: crimson;
   font-weight: 500;
+}
+
+button {
+  background-color: red;
+  color: white;
+  margin: 20px 20px;
+  padding: 10px 10px;
+  font-family: sans-serif;
+  font-weight: 600;
+  font: bold;
+  font-size: 30;
+  border-radius: 15px;
+}
+
+h1 {
+  font-family: sans-serif;
 }/*# sourceMappingURL=main.css.map */
