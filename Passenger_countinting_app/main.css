@@ -1,0 +1,21 @@
+body
+{
+    color: rgb(139, 73, 139);
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background: url('img1.webp');
+    background-size: cover;
+    background-attachment: fixed;
+    font-weight: bold;
+}
+button
+{
+    font-size: 600;
+    font-weight: bold;
+    padding: 10px 15px;
+    margin: 2px;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    background-color: red;
+}
