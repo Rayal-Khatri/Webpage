@@ -1,19 +1,19 @@
 firstcard = 10
 secondcard= 6
+newcard=5
 message="Starting Game..."
-cards = [firstcard,secondcard]
-sum=0
+cards = [firstcard,secondcard,newcard]
 function startGame()
 {
+    sum=0
     document.getElementById('message').textContent= message
+    sum=cards[0]+cards[1]
     renderGame()
-    console.log('hello')
 }
 
 function renderGame()
 {
     document.getElementById('cards').textContent+= cards[0] + " + " + cards[1]
-    sum=cards[0]+cards[1]
     if (sum < 21)
     {
         message="Do you want to  pull a card?"
@@ -26,4 +26,14 @@ function renderGame()
     {
         message="Game Over! You Lost!"
     }
+    document.getElementById('message').textContent= message    
+    document.getElementById('score').textContent ="Points : " + sum 
+}
+
+function addcard()
+{
+    sum+=cards[2]
+    console.log(sum)
+    document.getElementById('cards').textContent+= " + "+cards[2] 
+    renderGame()
 }
