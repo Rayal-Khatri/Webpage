@@ -1,0 +1,19 @@
+input
+{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    border: 2px solid green;
+    margin: 2px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+button
+{
+    background-color: green;
+    color: white;
+    padding: 15px 20px;
+    font-weight: bold;
+    border: none;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
