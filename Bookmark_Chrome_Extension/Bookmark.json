@@ -1,0 +1,9 @@
+{
+    "manifest_version":"3",
+    "version" : "1.0",
+    "name" : "Bookmark App",
+    "action" : {
+        "default_popup":"App.html",
+        "default_icon" : "img.png"
+    }
+}
