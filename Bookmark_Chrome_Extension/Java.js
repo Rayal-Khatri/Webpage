@@ -4,14 +4,19 @@ let input = document.getElementById('input-content')
 let valueEl = document.getElementById('links')
 let tempHTML =""
 let i=0
-links=[]
-displaylink()
+links=JSON.parse(localStorage.getItem("myLinks"))
 inputEl.addEventListener("click",function()
 {
     links.push(input.value)
-    localStorage.setItem("myLinks",JSON.stringify(links))
     input.value=""
+    localStorage.setItem("myLinks",JSON.stringify(links))
     displaylink()   
+})
+clearEl.addEventListener("click",function()
+{
+    links=[]
+    localStorage.clear()
+    displaylink()
 })
 function displaylink()
 {
@@ -28,9 +33,3 @@ function displaylink()
     valueEl.innerHTML = tempHTML  
     tempHTML=""
 }
-clearEl.addEventListener("click",function()
-{
-    links=[]
-    localStorage.clear()
-    displaylink()
-})
