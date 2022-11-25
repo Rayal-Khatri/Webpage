@@ -13,18 +13,20 @@ input
     width: 100%;
     box-sizing: border-box;
     padding: 10px 20px;
-    border: 2px solid green;
-    margin: 2px;
+    border: 2px solid #5f9341;
+    margin: 2px 0px;
     /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
 }
 
 button
 {
-    background-color: green;
+    background-color: #5f9341;
     color: white;
-    padding: 15px 20px;
+    padding: 6px 20px;
+    margin: 2px 0px;
     font-weight: bold;
-    border: none;
+    max-width: 129px;
+    border: 1px solid #5f9341;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 ul
@@ -40,5 +42,10 @@ li
 }
 a
 {
+    color: #5f9341;
+}
+#clear-btn
+{
+    background-color: white;
     color: #5f9341;
 }
