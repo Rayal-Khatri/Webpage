@@ -1,9 +1,12 @@
 {
     "manifest_version":3,
-    "version" : "1.0",
+    "version" : "1.1",
     "name" : "Bookmark App",
     "action" : {
         "default_popup":"App.html",
-        "default_icon" : "img.png"
-    }
+        "default_icon" : "img.png"  
+    },
+    "permissions": [
+        "tabs"
+    ]
 }
