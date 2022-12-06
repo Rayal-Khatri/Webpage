@@ -1,4 +1,3 @@
-console.log("This is my messsage")
 $(document).ready(function(){
     $(window).scroll(function(){
         if(this.scrollY > 2){
