@@ -1,0 +1,37 @@
+body
+{
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: 0;
+    min-width: 400px;
+}
+p
+{
+    text-align: center;
+    margin: 0;
+    padding: 2px 2px;
+}
+input
+{
+    background-color: whitesmoke;
+    margin: 2px 2px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    max-width: max-content;
+}
+#Login_Btn
+{
+    padding: 12px 20px;
+    background-color: crimson;
+    border: none;
+    border-radius: 5px;
+    margin: 2px 2px;
+}
+.logo
+{
+    text-align: left;
+    font-weight: bold;
+    font-size: 22px;
+    color: crimson;
+
+}
