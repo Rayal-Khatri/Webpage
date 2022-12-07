@@ -15,14 +15,13 @@ else
     ses.textContent='AM'
 }
 document.getElementById('hrs').innerHTML=hrs
-document.getElementById('min').innerHTML=min
-if(sec<10)
-{
-document.getElementById('sec').innerHTML='0',sec
-}
+if(min<10)
+    document.getElementById('min').innerHTML='0'+ min
 else
-{
-document.getElementById('sec').innerHTML=sec
-}
+    {document.getElementById('min').innerHTML= min}
+if(sec<10)
+    {document.getElementById('sec').innerHTML='0' + sec}
+else
+    {document.getElementById('sec').innerHTML=sec}
 }
 setInterval(displayTime, 10);
