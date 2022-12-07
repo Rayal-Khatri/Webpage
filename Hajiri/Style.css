@@ -1,3 +1,9 @@
+:root {
+    --primary-color: skyblue;
+    --bgcolor: #20272E;
+    --sec-color:rgb(241, 77, 110);
+    --text-color: whitesmoke;
+}
 html
 {
     padding: 0;
@@ -19,14 +25,14 @@ html
     left: 50%;
     transform: translate(-50%,-50%);
     text-align: center;
-    color: whitesmoke;
+    color: var(--text-color);
 }
 .Login_Bar #applogo
 {
     width: 30%;
     margin-top: -90px;
     background-color: whitesmoke;
-    border: 2px solid whitesmoke;
+    border: 1px solid white;
     border-radius: 50px;
 }
 
@@ -39,12 +45,12 @@ html
     margin: 20px auto;
     width: 220px;
     border-radius: 24px;
-    border: 3px #3872ca solid;
-    color: whitesmoke;
+    border: 3px var(--primary-color) solid;
+    color: var(--text-color);
     text-align: center;
     font-size: 15px;
     font-weight: bold;
-    transition: 0.3px;
+    transition: 0.3s;
 }
 #clock 
 {
@@ -55,34 +61,40 @@ html
 .Login_Bar input[type = "text"]:focus,.Login_Bar input[type="password"]:focus
 {
     width: 230px;
-    border: 3px rgb(241, 77, 110) solid;
+    border: 4px var(--sec-color) solid;
     outline: none;
+}
+.Login_Bar input[type = "text"]:hover,.Login_Bar input[type="password"]:hover
+{
+    width: 230px;
 }
 #Login_Btn
 {
-    background: rgb(241, 77, 110);
+    background: var(--sec-color);
     padding: 8px 80px;
-    color: whitesmoke;
+    color: var(--text-color);
     font-size: 15px;
     font-weight: 700;
     margin-top: -15px;
     margin-bottom: 9px;
-    border: 3px rgb(241, 77, 110) solid;
+    border: 3px var(--sec-color) solid;
     border-radius: 24px;
-    transition: 0.9px;
+    transition: 0.3s;
 }
 #Login_Btn:hover
 {
-    background: rgb(0,0,0,0.6);
+    background: var(--bgcolor);
     cursor: pointer;
+    color: var(--sec-color);
 
 }
 .Login_Bar a
 {
     text-decoration: none;
     padding: 10px;
-    color: white;
+    color: var(--text-color);
     position: sticky;
+    transition: 0.3s;
 }
 .Login_Bar a:hover
 {
