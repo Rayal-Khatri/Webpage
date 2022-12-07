@@ -37,6 +37,11 @@ html
     border-radius: 50px;
 }
 
+#clock 
+{
+    font-size: 25px;
+    font-weight: bold;
+}
 .Login_Bar input[type = "text"],.Login_Bar input[type="password"]
 {
     display: block;
@@ -53,10 +58,10 @@ html
     font-weight: bold;
     transition: 0.3s;
 }
-#clock 
+.Login_Bar input[type = "text"]::placeholder,.Login_Bar input[type="password"]::placeholder
 {
-    font-size: 25px;
-    font-weight: bold;
+    color: whitesmoke;
+    opacity: 50%;
 }
 
 .Login_Bar input[type = "text"]:focus,.Login_Bar input[type="password"]:focus
