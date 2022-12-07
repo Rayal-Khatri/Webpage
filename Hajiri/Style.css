@@ -26,6 +26,7 @@ html
     width: 30%;
     margin-top: -90px;
     background-color: whitesmoke;
+    border: 2px solid whitesmoke;
     border-radius: 50px;
 }
 
