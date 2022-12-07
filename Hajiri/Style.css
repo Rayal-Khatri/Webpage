@@ -1,6 +1,6 @@
 :root {
     --primary-color: skyblue;
-    --bgcolor: #20272E;
+    --bgcolor: rgb(32, 39, 46);
     --sec-color:rgb(241, 77, 110);
     --text-color: whitesmoke;
 }
@@ -17,7 +17,7 @@ html
 }
 .Login_Bar
 {
-    background-color: rgb(0,0,0,0.6);
+    background-color: rgb(32, 39, 46,0.6);
     width: 300px;
     position: absolute;
     padding: 30px;
@@ -26,6 +26,7 @@ html
     transform: translate(-50%,-50%);
     text-align: center;
     color: var(--text-color);
+    border-radius: 10px;
 }
 .Login_Bar #applogo
 {
