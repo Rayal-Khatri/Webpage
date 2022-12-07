@@ -1,11 +1,13 @@
-body
+html
 {
     padding: 0;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     margin: 0;
     background: url('img/Bg.jpg');
     background-size: cover;
-    min-width: 400px;
+    background-position:center ;
+    background-repeat:no-repeat ;
+    height: 100%;
 }
 .Login_Bar
 {
@@ -36,16 +38,52 @@ body
     margin: 20px auto;
     width: 220px;
     border-radius: 24px;
-    border: 5px #0367fd solid;
+    border: 3px #3872ca solid;
     color: whitesmoke;
     text-align: center;
     font-size: 15px;
     font-weight: bold;
     transition: 0.3px;
 }
+#clock 
+{
+    font-size: 25px;
+    font-weight: bold;
+}
 
 .Login_Bar input[type = "text"]:focus,.Login_Bar input[type="password"]:focus
 {
-    width: 250px;
-    border: 5px crimson solid;
+    width: 230px;
+    border: 3px rgb(241, 77, 110) solid;
+    outline: none;
+}
+#Login_Btn
+{
+    background: rgb(241, 77, 110);
+    padding: 8px 80px;
+    color: whitesmoke;
+    font-size: 15px;
+    font-weight: 700;
+    margin-top: -15px;
+    margin-bottom: 9px;
+    border: 3px rgb(241, 77, 110) solid;
+    border-radius: 24px;
+    transition: 0.9px;
+}
+#Login_Btn:hover
+{
+    background: rgb(0,0,0,0.6);
+    cursor: pointer;
+
+}
+.Login_Bar a
+{
+    text-decoration: none;
+    padding: 10px;
+    color: white;
+    position: sticky;
+}
+.Login_Bar a:hover
+{
+    font-weight: bold;
 }
