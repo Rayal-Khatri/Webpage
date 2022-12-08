@@ -1,0 +1,65 @@
+html
+{
+    background: url('img/Bg2.jpg');
+    background-size: cover;
+    background-position: center;
+    font-family: sans-serif;
+}
+body
+{
+    margin: 0;
+    padding: 0;
+}
+
+.navbar
+{
+    width: 100%;
+    margin-bottom: 2px;
+    background: rgb(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#logo
+{
+    margin: 2px 20px;
+    padding: 20px ;
+    color: whitesmoke;
+}
+#Employee_Info
+{
+    background: rgb(0,0,0,0.3);
+    padding: 19px 10px;
+    font-size: 17px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    height: 90px;
+    max-width: 250px;
+    color: whitesmoke;
+    border: 4px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+#Employee_Info a:hover
+{
+    background: rgb(0,0,0,0.6);
+    font-weight: bold;
+}
+#Employee_Info a
+{
+    text-decoration: none;
+    color: whitesmoke;
+}
+#Employee_Info img
+{
+    width: 25%;
+    border: 2px solid white;
+    border-radius: 100px;
+    margin-left: 20px;
+}
+#Employee_Info img:hover
+{
+    border: 4px solid whitesmoke;
+}
