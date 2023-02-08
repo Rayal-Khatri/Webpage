@@ -1,0 +1,11 @@
+
+
+@media screen and (max-width: 550px) {
+    .nav-avatar {
+        width: 40px;
+    }
+    .btn span
+    {
+        display: none;
+    }
+}
