@@ -27,7 +27,7 @@ function renderGame()
     document.getElementById('cards').textContent = "Cards : "
     for(i=0;i<cards.length;i++)
     {
-        document.getElementById('cards').textContent+= cards[i] + " "
+        document.getElementById('cards').textContent+= cards[i] + ", "
     }
     
     if (sum < 21)
