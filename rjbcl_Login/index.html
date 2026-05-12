@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Login | राष्ट्रिय जीवन बीमा कम्पनी लिमिटेड</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="icon" href="{% static 'images/favicon-logo.png' %}" type="image/png">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="colors.css">
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+    <div class="hero-8">
+        <div class="login-wrapper">
+            <!-- Left Hero Section -->
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h1 class="hero-title">Welcome to<br> Rastriya Jeewan Beema</h1>
+                    <p class="hero-description">
+                        Rastriya Jeewan Beema Company Limited is the first life insurance
+                        company in Nepal which was established as its previous Name
+                        Rastriya Beema Sansthan. Established by the Government of Nepal.
+                    </p>
+                    <a href="https://rbs.gov.np/introduction#explore" class="btn-explore">Explore</button></a>
+                </div>
+                <div class="hero-overlay"></div>
+            </div>
+
+            <!-- Right Login Section -->
+            <div class="login-section col-sm-12">
+                <div class="login-card">
+                    <!-- Logo and Company Name -->
+                    <div class="login-header">
+                        <img src="{% static 'images/rjbclogo.png' %}" alt="RJBCL Logo" class="company-logo">
+                    </div>
+
+                    <!-- Tab Buttons -->
+                    <div class="tab-buttons">
+                        <button type="button" class="tab-btn active" data-tab="policy">
+                            Policy Holder
+                        </button>
+                        <button type="button" class="tab-btn" data-tab="agent">
+                            Agent
+                        </button>
+                    </div>
+
+                    <!-- Django Messages (hidden, will be shown via SweetAlert) -->
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="message-box {% if 'success' in message.tags %}success-box{% else %}error-box{% endif %}"
+                        style="display: block;">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+
+                    <!-- POLICY HOLDER LOGIN FORM -->
+                    <div class="form-container active" id="policyFormWrapper">
+                        <form id="policyForm" method="POST" action="{% url 'kyc:policy_login' %}" autocomplete="off">
+                            {% csrf_token %}
+
+                            <!-- Autofill blockers -->
+                            <input type="text" name="fakeusernameremembered" style="display:none" tabindex="-1">
+                            <input type="password" name="fakepasswordremembered" style="display:none" tabindex="-1">
+
+                            <div class="form-group">
+                                <label class="form-label">Policy Number</label>
+                                <input class="form-control" name="policy_no" id="policy-number"
+                                    placeholder="Policy number" autocomplete="off" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Password</label>
+                                <div class="password-wrapper">
+                                    <input class="form-control" name="password" type="password" id="policyPassword"
+                                        placeholder="••••••••" autocomplete="new-password" required>
+                                    <button type="button" class="toggle-password" data-target="policyPassword">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="form-footer mb-2">
+                                <div></div>
+                                <a href="/forgot-password/?type=policy" class="forgot-link">
+                                    Forgot password?
+                                </a>
+                            </div>
+
+                            <button type="submit" class="btn-signin">
+                                Log in
+                            </button>
+
+                            <div class="divider">
+                                <span>OR</span>
+                            </div>
+
+                            <div class="form-links">
+                                <p class="register-link">
+                                    <a href="{% url 'kyc:direct_kyc_entry' %}">Continue Without Login</a>
+                                    <br>
+
+                                </p>
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <!-- AGENT LOGIN FORM -->
+                    <div class="form-container" id="agentFormWrapper">
+                        <form id="agentForm" method="POST" action="{% url 'kyc:agent_login' %}" autocomplete="off">
+                            {% csrf_token %}
+
+                            <!-- Autofill blockers -->
+                            <input type="text" name="fakeusernameremembered" style="display:none" tabindex="-1">
+                            <input type="password" name="fakepasswordremembered" style="display:none" tabindex="-1">
+
+                            <div class="form-group">
+                                <label class="form-label">Agent Code</label>
+                                <input class="form-control" name="agent_code" id="agent-code" placeholder="Agent Code"
+                                    autocomplete="off" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Password</label>
+                                <div class="password-wrapper">
+                                    <input class="form-control" name="password" type="password" id="agentPassword"
+                                        placeholder="••••••••" autocomplete="new-password" required>
+                                    <button type="button" class="toggle-password" data-target="agentPassword">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="form-footer mb-2">
+                                <div>
+                                    <span class="error-message text-danger "></span>
+                                </div>
+                                <a href="/forgot-password/?type=agent" class="forgot-link">
+                                    Forgot password?
+                                </a>
+                            </div>
+
+                            <button type="submit" class="btn-signin">
+                                Sign in
+                            </button>
+
+                            <div class="divider">
+                                <span>OR</span>
+                            </div>
+
+                            <div class="form-links">
+                                <p class="register-link">
+                                    New Agent :<a href="{% url 'kyc:policy_register' %}?tab=agent"> Register</a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="login-footer">
+                        <p>© 2025 RJBCL. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Active tab passed to JS -->
+    <script>
+        window.activeTab = "{{ active_tab }}";
+    </script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="nepali.datepicker.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="login.js"></script>
+
+</body>
+
+</html>

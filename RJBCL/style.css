@@ -1,0 +1,420 @@
+/* ── Viewport scaling ────────────────────────────────────────────────────── */
+.wheel-wrapper {
+  /* transform: scale(0.8); */
+  transform-origin: center center;
+  width: 100%;
+  height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Layout: full screen flex row ───────────────────────────────────────── */
+body {
+  background-image: var(--bg-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.app-layout {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── Wheel side ──────────────────────────────────────────────────────────── */
+.wheel-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  transition: width 0.7s cubic-bezier(0.77, 0, 0.18, 1);
+  position: relative;
+  z-index: 10;
+}
+
+.app-layout.expanded .wheel-side {
+  width: 42%;
+}
+
+/* ── Orbit scene: vmin-based so it scales with any screen ────────────────── */
+.orbit-scene {
+  position: relative;
+  width:  90vmin;
+  height: 90vmin;
+  flex-shrink: 0;
+  transition: width 0.7s cubic-bezier(0.77, 0, 0.18, 1),
+              height 0.7s cubic-bezier(0.77, 0, 0.18, 1),
+              transform 0.7s cubic-bezier(0.77, 0, 0.18, 1);
+}
+
+.app-layout.expanded .orbit-scene {
+  width:  75vmin;
+  height: 75vmin;
+  transform: translateX(-30%);
+}
+
+.orbit-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Orbit ring ──────────────────────────────────────────────────────────── */
+.orbit-ring {
+  position: absolute;
+  top:  50%;
+  left: 50%;
+  width:  0;
+  height: 0;
+}
+
+/* ── Individual service node ─────────────────────────────────────────────── */
+.service-node {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 160px;
+  margin-left: -80px;
+  margin-top:  -60px;
+  cursor: pointer;
+  transition: filter 0.3s ease;
+}
+
+.service-node:hover {
+  filter: drop-shadow(0 0 12px rgba(66, 238, 127, 0.5));
+  z-index: 10;
+}
+
+.service-node.active .node-icon-bg {
+  box-shadow: 0 0 0 2px #42ee7f, 0 0 28px rgba(66, 238, 127, 0.6);
+  background: rgba(66, 238, 127, 0.15);
+}
+
+.service-node.active .node-title {
+  color: #42ee7f;
+}
+
+/* ── Node icon bubble ────────────────────────────────────────────────────── */
+.node-icon-bg {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: rgba(28, 31, 41, 0.5);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #42ee7f;
+  margin-bottom: 8px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease, background 0.3s ease;
+}
+
+.service-node:hover .node-icon-bg {
+  box-shadow: 0 0 28px rgba(66, 238, 127, 0.6), inset 0 0 8px rgba(66, 238, 127, 0.2);
+  transform: scale(1.15);
+  background: rgba(66, 238, 127, 0.12);
+}
+
+.service-node:hover .material-symbols-outlined {
+  font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+}
+
+/* ── Node label ──────────────────────────────────────────────────────────── */
+.node-label {
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+.node-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #dfe2ef;
+  transition: color 0.3s ease;
+}
+
+.node-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: #bbcbb9;
+  margin-top: 2px;
+  line-height: 1.4;
+  transition: opacity 0.4s ease, max-height 0.4s ease;
+  max-height: 40px;
+  overflow: hidden;
+}
+
+.app-layout.expanded .node-desc {
+  opacity: 0;
+  max-height: 0;
+}
+
+.service-node:hover .node-title {
+  color: #42ee7f;
+}
+
+/* ── Center hub ──────────────────────────────────────────────────────────── */
+.center-hub {
+  position: absolute;
+  top:  50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width:  220px;
+  height: 220px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid rgba(66, 238, 127, 0.3);
+  box-shadow: 0 0 60px rgba(66, 238, 127, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  cursor: pointer;
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+
+.center-hub:hover {
+  transform: translate(-50%, -50%) scale(1.06);
+  box-shadow: 0 0 90px rgba(66, 238, 127, 0.55), 0 0 30px rgba(66, 238, 127, 0.2);
+}
+
+.center-hub:hover .circular-progress-ring {
+  border-color: rgba(66, 238, 127, 0.9);
+}
+
+/* ── Spinning dashed ring inside hub ─────────────────────────────────────── */
+.circular-progress-ring {
+  position: absolute;
+  inset: 8px;
+  border: 1px dashed rgba(66, 238, 127, 0.4);
+  border-radius: 50%;
+  transition: border-color 0.3s ease;
+}
+
+/* ── Content panel (right side) ──────────────────────────────────────────── */
+.content-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 58%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 64px 56px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(40px);
+  transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s;
+  overflow-y: auto;
+  z-index: 5;
+}
+
+.app-layout.expanded .content-panel {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateX(0);
+}
+
+/* glass background for content panel */
+.content-panel-inner {
+  background: rgba(15, 19, 28, 0.55);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 48px;
+}
+
+/* ── Content panel typography ────────────────────────────────────────────── */
+.content-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #bbcbb9;
+  margin-bottom: 24px;
+}
+
+.content-breadcrumb .sep {
+  opacity: 0.4;
+}
+
+.content-title {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.1;
+  color: #dfe2ef;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.content-title span {
+  color: #42ee7f;
+}
+
+.content-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #bbcbb9;
+  margin-bottom: 40px;
+  max-width: 480px;
+}
+
+/* ── Feature cards grid ──────────────────────────────────────────────────── */
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.feature-card {
+  background: rgba(28, 31, 41, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.feature-card:hover {
+  background: rgba(66, 238, 127, 0.07);
+  border-color: rgba(66, 238, 127, 0.3);
+  transform: translateY(-2px);
+}
+
+.feature-card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(66, 238, 127, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #42ee7f;
+  flex-shrink: 0;
+}
+
+.feature-card-title {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #dfe2ef;
+  margin-bottom: 4px;
+}
+
+.feature-card-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: #bbcbb9;
+  line-height: 1.5;
+}
+
+/* ── CTA row ─────────────────────────────────────────────────────────────── */
+.cta-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.btn-primary {
+  background: #42ee7f;
+  color: #003917;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 12px 28px;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 20px rgba(66, 238, 127, 0.4);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: #bbcbb9;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s ease;
+}
+
+.btn-ghost:hover { color: #42ee7f; }
+
+/* ── Close / back button ─────────────────────────────────────────────────── */
+.back-btn {
+  position: absolute;
+  top: 32px;
+  right: 40px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(28, 31, 41, 0.6);
+  border: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #bbcbb9;
+  cursor: pointer;
+  z-index: 30;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease 0.5s, color 0.2s ease, background 0.2s ease;
+}
+
+.app-layout.expanded .back-btn {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.back-btn:hover {
+  color: #42ee7f;
+  background: rgba(66, 238, 127, 0.1);
+}
+
+/* ── Ambient background effects ──────────────────────────────────────────── */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+.radial-glow {
+  background: radial-gradient(circle, rgba(66, 238, 127, 0.15) 0%, rgba(15, 19, 28, 0) 70%);
+}
+
+:root {
+  --bg-image: url('bg.jpg');
+}
+
+.dot-grid {
+  background-image: radial-gradient(circle, #42ee7f 1px, transparent 1px);
+  background-size: 40px 40px;
+}

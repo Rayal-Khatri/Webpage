@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Rastriya Jeevan Beema - Protective Intelligence Hub</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;800&family=Inter:wght@400;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="script.js" id="tailwind-config"></script>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
+
+  <div class="app-layout" id="appLayout">
+
+    <!-- Ambient Background Layers -->
+    <div class="absolute inset-0 radial-glow z-0 pointer-events-none"></div>
+    <div class="absolute inset-0 opacity-5 pointer-events-none dot-grid"></div>
+
+    <!-- ── Wheel Side ───────────────────────────────────────────────────── -->
+    <div class="wheel-side">
+      <div class="wheel-wrapper">
+        <div class="orbit-scene">
+
+          <svg class="orbit-svg pointer-events-none" viewBox="0 0 1000 1000">
+            <defs>
+              <linearGradient id="lineGrad" x1="0%" x2="100%" y1="0%" y2="0%">
+                <stop offset="0%" stop-color="transparent"/>
+                <stop offset="50%" stop-color="#42ee7f" stop-opacity="0.4"/>
+                <stop offset="100%" stop-color="transparent"/>
+              </linearGradient>
+            </defs>
+            <circle cx="500" cy="500" r="220" fill="none" stroke="rgba(66,238,127,0.08)" stroke-width="1.5"/>
+            <circle cx="500" cy="500" r="340" fill="none" stroke="rgba(66,238,127,0.05)" stroke-dasharray="10 6" stroke-width="1"/>
+          </svg>
+
+          <div class="orbit-ring" id="orbitRing"></div>
+
+          <div class="center-hub" id="centerHub">
+            <div class="absolute inset-2 circular-progress-ring animate-[spin_20s_linear_infinite]"></div>
+            <img
+              alt="Rastriya Jeevan Beema"
+              class="relative z-10 w-44 h-auto object-contain px-4"
+              src="https://lh3.googleusercontent.com/aida/ADBb0uh1dkGQTU12-t0J0uh58dgiMRj3wNFSESMd1Z6BK1GgV2balfJBUP1e52VDWWoqwSdQC33YX4ds0AlLNZdVV1yYzpiNiIwjuTwcEo6tZkAoOtyjIxDcGowTJL20wXogSDituYfA3IxX3V-1cUf3Oob0ZXiob4q_zU-kCUVqSsEbXAMJ5gn-28ymU9gkZAEx5peNIjufBGS79ekIKAR1-MbAkWNjz4PjM-LdrvCcrZrqxzklC4pSOY9lIvMXlYnM_DGTrGm7jvNEqw"
+            />
+            <div class="absolute inset-0 rounded-full border-2 border-primary animate-ping opacity-60"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Content Panel (right side) ──────────────────────────────────── -->
+    <div class="content-panel" id="contentPanel">
+      <div class="content-panel-inner">
+        <!-- breadcrumb -->
+        <div class="content-breadcrumb">
+          <span class="material-symbols-outlined" style="font-size:14px;">home</span>
+          <span class="sep">›</span>
+          <span id="contentCategory">Services</span>
+        </div>
+
+        <!-- title -->
+        <h1 class="content-title" id="contentTitle">Service <span>Hub</span></h1>
+        <p class="content-desc" id="contentDesc">Select a service to explore its features and get started.</p>
+
+        <!-- feature cards -->
+        <div class="feature-grid" id="featureGrid">
+          <!-- injected by spin.js -->
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-row">
+          <button class="btn-primary" id="contentCta">Get Started</button>
+          <button class="btn-ghost">
+            <span class="material-symbols-outlined" style="font-size:16px;">help_outline</span>
+            Learn more
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Close / back button -->
+    <button class="back-btn" id="backBtn">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+
+  </div><!-- end app-layout -->
+
+  <script src="spin.js"></script>
+</body>
+</html>
