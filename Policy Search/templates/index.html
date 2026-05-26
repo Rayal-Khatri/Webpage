@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="{{ url_for('static', filename='favicon-logo.png') }}" type="image/x-icon" />
+<title>Policy Search</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap');
+
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2e3245;
+    --accent: #4f8ef7;
+    --accent2: #7c3aed;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --success: #10b981;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    padding: 2rem;
+  }
+
+  header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+  }
+
+  header h1 {
+    font-family: var(--mono);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: -0.5px;
+  }
+
+  header span {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-family: var(--mono);
+  }
+
+  .search-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .field label {
+    display: block;
+    font-size: 0.7rem;
+    font-family: var(--mono);
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.4rem;
+  }
+
+  .field input {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .field input:focus {
+    border-color: var(--accent);
+  }
+
+  .actions {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+
+  button[type=submit] {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  button[type=submit]:hover { opacity: 0.85; }
+
+  a.reset {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  a.reset:hover { color: var(--text); }
+
+  .badge {
+    margin-left: auto;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 0.3rem 0.75rem;
+    border-radius: 99px;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--success);
+  }
+
+  .error {
+    background: #2d1b1b;
+    border: 1px solid #7f1d1d;
+    color: #fca5a5;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+    font-family: var(--mono);
+  }
+
+  thead tr {
+    background: #12151f;
+    border-bottom: 2px solid var(--border);
+  }
+
+  thead th {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    color: var(--muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.68rem;
+    letter-spacing: 0.8px;
+    white-space: nowrap;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.1s;
+  }
+
+  tbody tr:hover { background: var(--surface); }
+  tbody tr:last-child { border-bottom: none; }
+
+  tbody td {
+    padding: 0.65rem 1rem;
+    white-space: nowrap;
+    color: var(--text);
+  }
+
+  .empty {
+    text-align: center;
+    padding: 3rem;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>⬡ Policy Search</h1>
+  <span>Internal LAN Tool — fill any field to search</span>
+</header>
+
+<form method="POST">
+  <div class="search-grid">
+    <div class="field">
+      <label>DOC Date (YYYY-MM-DD)</label>
+      <input name="doc" type="text" placeholder="2006-12-25" value="{{ filters.get('doc','') }}">
+    </div>
+    <div class="field">
+      <label>Mobile</label>
+      <input name="mobile" type="text" placeholder="98XXXXXXXX" value="{{ filters.get('mobile','') }}">
+    </div>
+    <div class="field">
+      <label>Policy No</label>
+      <input name="policy_no" type="text" placeholder="3018283000550" value="{{ filters.get('policy_no','') }}">
+    </div>
+    <div class="field">
+      <label>Full Name / Nominee Name</label>
+      <input name="full_name" type="text" placeholder="Nita..." value="{{ filters.get('full_name','') }}">
+    </div>
+    <div class="field">
+      <label>DOB Year</label>
+      <input name="dob_year" type="text" placeholder="1975" value="{{ filters.get('dob_year','') }}">
+    </div>
+    <div class="field">
+      <label>District</label>
+      <input name="district" type="text" placeholder="NUWAKOT" value="{{ filters.get('district','') }}">
+    </div>
+  </div>
+
+  <div class="actions">
+    <button type="submit">Search</button>
+    <a class="reset" href="/">Clear</a>
+    {% if rows %}
+      <span class="badge">{{ count }} record{{ 's' if count != 1 }}</span>
+    {% endif %}
+  </div>
+</form>
+
+{% if error %}
+  <div class="error">{{ error }}</div>
+{% endif %}
+
+{% if rows %}
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>{% for col in columns %}<th>{{ col }}</th>{% endfor %}</tr>
+    </thead>
+    <tbody>
+      {% for row in rows %}
+      <tr>{% for cell in row %}<td>{{ cell if cell is not none else '—' }}</td>{% endfor %}</tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% elif not error %}
+<div class="empty">Enter search criteria above and press Search.</div>
+{% endif %}
+
+</body>
+</html>
